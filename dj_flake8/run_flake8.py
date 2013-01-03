@@ -2,7 +2,6 @@ import os
 import pep8
 import sys
 
-import flake8.run
 
 from django_jenkins.tasks import (
     BaseTask,
@@ -33,6 +32,9 @@ class Task(BaseTask):
         )
 
     def teardown_test_environment(self, **kwargs):
+        # Local import to avoid intallation errors.
+        import flake8.run
+
         locations = get_apps_locations(
             self.test_labels,
             self.test_all
