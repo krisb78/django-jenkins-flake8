@@ -18,19 +18,19 @@ class Task(BaseTask):
     def __init__(self, test_labels, options):
         super(Task, self).__init__(test_labels, options)
         self.test_all = options['test_all']
-        if options.get('flake8_file_output', True):
-            output_dir = options['output_dir']
-            if not os.path.exists(output_dir):
-                os.makedirs(output_dir)
-            self.output = open(
-                os.path.join(
-                    output_dir,
-                    'flake8.report'
-                ),
-                'w'
-            )
-        else:
-            self.output = sys.stdout
+        output_dir = options['output_dir']
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir)
+
+        # We always write to a file. Can't think of a scenario
+        # when jenkins would want to write the report to stdout.
+        self.output = open(
+            os.path.join(
+                output_dir,
+                'flake8.report'
+            ),
+            'w'
+        )
 
     def teardown_test_environment(self, **kwargs):
         locations = get_apps_locations(
