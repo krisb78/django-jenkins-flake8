@@ -26,6 +26,9 @@ setup(
         'Topic :: Software Development :: Libraries :: Application Frameworks',
     ],
     packages=find_packages(exclude=["example", "example.*"]),
+    requires=[
+        'flake8 (>=1.7.0)',
+    ]
     include_package_data=True,
     zip_safe=False
 )
