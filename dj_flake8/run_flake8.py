@@ -4,11 +4,11 @@ import sys
 
 import flake8.run
 
-
 from django_jenkins.tasks import (
     BaseTask,
     get_apps_locations
 )
+from django_jenkins.functions import relpath
 
 from StringIO import StringIO
 
@@ -59,7 +59,10 @@ class Task(BaseTask):
             line = flake8_output.readline()
             if not line:
                 break
-            # message = re.sub(r': ', r': [E] PYFLAKES:', line)
-            self.output.write(line)
+
+            # Make sure the path is relative in the report
+            bits = line.split(':')
+            bits[0] = relpath(bits[0])
+            self.output.write(':'.join(bits))
 
         self.output.close()
