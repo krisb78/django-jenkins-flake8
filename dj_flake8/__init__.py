@@ -10,5 +10,5 @@ else:
 
 __all__ = [
     '__version__',
-    'run_flake8
+    'run_flake8',
 ]
