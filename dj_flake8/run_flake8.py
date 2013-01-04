@@ -1,7 +1,7 @@
 import os
-import pep8
 import sys
 
+from flake8 import pep8
 
 from django_jenkins.tasks import (
     BaseTask,
