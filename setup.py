@@ -28,6 +28,7 @@ setup(
     packages=find_packages(exclude=["example", "example.*"]),
     requires=[
         'flake8 (>=1.7.0)',
+        'django_jenkins (>=0.13.0)',
     ],
     include_package_data=True,
     zip_safe=False
